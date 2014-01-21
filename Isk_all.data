@@ -3,7 +3,7 @@ RUNSPEC
 METRIC
 
 DIMENS
-198  189  52 /
+99  95  67 /
 
 EQLDIMS
 1
@@ -50,16 +50,16 @@ GRID
 NEWTRAN
 
 INCLUDE
-'GEOL/grid.ecl' / -- grid 
+'GEOL_ups/grid.ecl' / -- grid 
 
 INCLUDE
-'GEOL/ntg.ecl' / -- NTG
+'GEOL_ups/ntg.ecl' / -- NTG
 
 INCLUDE
-'GEOL/poro.ecl' / -- poro
+'GEOL_ups/poro.ecl' / -- poro
 
 --INCLUDE
---'GEOL/permx.ecl' / -- depths of cells
+--'GEOL_ups/permx.ecl' / -- depths of cells
 
 NOECHO
 
@@ -366,7 +366,7 @@ HUNI
 sm3/day sm3/day ksm3 ksm3 bara /
 
 INCLUDE 
-  'GEOL/Wells/Well.dat' /
+  'GEOL_ups/Wells/Well.dat' /
 INCLUDE 
   'INCL/perf_isk.inc' /
  INCLUDE 
