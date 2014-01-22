@@ -1,16 +1,75 @@
---- C:/Users/SazonovEO/AppData/Local/Temp/GfbQvc_perf_isk.inc	Sun Jan 19 22:39:46 2014
-+++ D:/BN_work/01_2014/Iskan/model/INCL/perf_isk.inc	Sun Jan 19 21:35:40 2014
-@@ -4,2 +4,3 @@
- 6	01.08.1973	PERF	2144.00	2148.00	0.066	0	1	/	DI; 	кумулятивный вторичное вскрытие после бурения
-+6	01.01.1977	PERF	2144.00	2148.00	0.066	0	2.4	/	DI; 	видимо ГТМ
- 9	01.09.1968	PERF	2131.00	2132.40	0.066	0	1	/	DI; 	кумулятивный вторичное вскрытие после бурения
-@@ -11,3 +12,4 @@
- 11	01.05.1978	PERF	1824.00	1848.00	0.066	0	1	/	0	кумулятивный перевод на другой горизонт
--13	01.12.1968	PERF	2080.00	2085.50	0.066	0	1	/	DI; 	кумулятивный вторичное вскрытие после бурения
-+13	01.12.1968	PERF	2080.00	2085.50	0.066	0	2	/	DI; 	кумулятивный вторичное вскрытие после бурения + хорошее освоение
-+13	01.12.1978	PERF	2080.00	2085.50	0.066	0	1	/	DI; 	кумулятивный вторичное вскрытие после бурения
- 14	01.01.1973	PERF	2122.80	2125.60	0.066	0	1	/	DI; 	кумулятивный вторичное вскрытие после бурения
-
-
- Iskups2.data - second file that is to compare two variants of matching
+diff --git a/Iskups.data b/Iskups.data
+index a7473b7..840eeb3 100644
+--- a/Iskups.data
++++ b/Iskups.data
+@@ -71,14 +71,15 @@ INCLUDE
+ 
+ NOECHO
+ 
+-
+ ARITHMETIC
+ --PERMX = 6.58850E-03*EXP(poro*100*5.88593E-01)
+ --PERMX = 0.667774086 * PERMX 
+ PERMX = 1E03*PERMX *  0.667774086
++PCW=0.43822*28*0.318316*((poro/permx)^0.5)
+ PERMX = ARRKX * PERMX
+ PERMZ = 0.8 * PERMX
+ MULTPV = (ARRMPV == 1) * 10000*0.5 + (ARRMPV!=1) * 1
++PCW = ARRMPCW * PCW 
+ /
+ 
+ COPY
+@@ -249,20 +250,16 @@ SWOF
+ INCLUDE
+ 'GEOL_ups/ARRNUM.inc' /
+ 
+-INCLUDE
+-'GEOL_ups/ARRMPCW.inc' /
++--INCLUDE
++--'GEOL_ups/ARRMPCW.inc' /
++
+ 
+-INCLUDE
+-'GEOL_ups/arrpermx.ecl' /
+ 
+ ARITHMETIC
+-ARRPERMX = 1E03*ARRPERMX *  0.667774086
+ SOWCR = 0.33
+ SWL = 7.07767E+03*PORO^4 - 5.04617E+03*PORO^3 + 1.36104E+03*PORO^2 - 1.64983E+02*PORO + 7.64190E+00
+ SWL = SWL * (PORO<0.1927) + 0.040537 * (PORO>=0.1927)
+ SWL = MIN (0.4, SWL)
+-PCW=0.43822*28*0.318316*((poro/arrpermx)^0.5)
+-PCW = ARRMPCW * PCW 
+ KRW = 1 
+ KRWR = (ARRNUM==1) * 0.0742 + (ARRNUM==2) * 0.071
+  /
+diff --git a/MULTS.inc b/MULTS.inc
+index 802e4e7..31f02b8 100644
+--- a/MULTS.inc
++++ b/MULTS.inc
+@@ -3,12 +3,12 @@ ARRMPCW = 0
+ ARRMPCW=ARRMPCW + 1*block(9015.82225, 4211.3235)
+ ARRMPCW=ARRMPCW + 1*block(9351.066, 3282.632)
+ ARRMPCW=ARRMPCW + 1*block(6557.688, 3647.3335)
+-ARRMPCW=ARRMPCW + 0.133015146140368*block(7140.873, 3485.72825)
++ARRMPCW=ARRMPCW + 1*block(7140.873, 3485.72825)
+ ARRMPCW=ARRMPCW + 1*block(8707.304, 3196.64125)
+ ARRMPCW=ARRMPCW + 0.2*block(8893.242, 2889.26125)
+ ARRMPCW=ARRMPCW + 1*block(6030.841, 3341.31775)
+ ARRMPCW=ARRMPCW + 1*block(7264.879, 5634.65975)
+-ARRMPCW=ARRMPCW + 1.3*block(6661.917, 3047.0415)
++ARRMPCW=ARRMPCW + 1.4729*block(6661.917, 3047.0415)
+ ARRMPCW=ARRMPCW + 1*block(8403.026, 2897.1765)
+ ARRMPCW=ARRMPCW + 1*block(6315.41325, 4422.3355)
+ ARRMPCW=ARRMPCW + 1*block(6591.50475, 4072.916)
+@@ -34,7 +34,8 @@ ARRMPCW=ARRMPCW + 0.2*block(9825.781, 3006.10025)
+ ARRMPCW=ARRMPCW + 0.2*block(9098.92075, 3565.71625)
+ ARRMPCW=ARRMPCW + 1*block(6949.305, 4016.40875)
+ ARRMPCW=ARRMPCW + 1*block(8698.85875, 3531.59225)
+-ARRMPCW = INTERPOLATE_ML_IDW (ARRMPCW, 0, 1,2)
++ARRMPCW=ARRMPCW + 1*block(8182, 3717)
++ARRMPCW = INTERPOLATE_ML_IDW (ARRMPCW, 0, 1,3)
+ ARRKX	=0
+ ARRKX=ARRKX + 1*block(9015.82225, 4211.3235)	
+ ARRKX=ARRKX + 1*block(9351.066, 3282.632)	
 
