@@ -1,58 +1,66 @@
---- C:/Users/SazonovEO/AppData/Local/Temp/XgNe1b_perf_isk.inc	Thu Jan 23 16:30:21 2014
-+++ D:/BN_work/01_2014/Iskan/model/INCL/perf_isk.inc	Thu Jan 23 16:22:55 2014
-@@ -2,7 +2,7 @@
- 4	01.06.1974	PERF	2136.80	2144.00	0.066	0	1	/	0	кумулятивный вторичное вскрытие после бурения
- 4	01.08.1977	PERF	2143.00	2146.00	0.066	0	1	/	0	кумулятивный дострел
- 6	01.08.1973	PERF	2144.00	2148.00	0.066	0	1	/	DI; 	кумулятивный вторичное вскрытие после бурения
--6	01.01.1977	PERF	2144.00	2148.00	0.066	0	2.4	/	DI; 	видимо ГТМ
-+6	01.01.1977	PERF	2144.00	2148.00	0.066	0	7.6	/	DI; 	видимо ГТМ
- 9	01.09.1968	PERF	2131.00	2132.40	0.066	0	1	/	DI; 	кумулятивный вторичное вскрытие после бурения
- 9	01.09.1968	PERF	2118.00	2128.00	0.066	0	1	/	DI; 	кумулятивный приобщение
- 9	01.10.1968	PERF	2109.00	2129.30	0.066	0	1	CLOSE /	DI; 	Цем.залив.в перф.инт.без ост.ЦМ 
---- C:/Users/SazonovEO/AppData/Local/Temp/Xvydle_Iskups.data	Thu Jan 23 16:31:11 2014
-+++ D:/BN_work/01_2014/Iskan/model/Iskups.data	Thu Jan 23 15:50:37 2014
-@@ -86,7 +86,6 @@
- PCW = ARRMPCW * PCW 
- KRW = 1 
- KRWR = (ARRNUM==1) * 0.0742 + (ARRNUM==2) * 0.071
--KRWR = ARRMKRW * KRWR
- PERMZ(70:73,5:9,46:50) = 0 * (PERMX<1.500) + PERMZ * (PERMX>=1.500)
- PERMZ(53:59,52:58,37:43) = 0.000 * (PERMX<50.0) + PERMZ * (PERMX>=50.0)
+--- C:/Users/SazonovEO/AppData/Local/Temp/JPMvUa_Iskups2.data	Thu Jan 23 19:46:37 2014
++++ D:/BN_work/01_2014/Iskan/model/Iskups2.data	Thu Jan 23 18:59:28 2014
+@@ -52,6 +52,9 @@
+ NEWTRAN
+ 
+ INCLUDE
++'GEOL_ups/ARRNUM.inc' /
++
++INCLUDE
+ 'GEOL_ups/grid.ecl' / -- grid 
+ 
+ INCLUDE
+@@ -71,14 +74,26 @@
+ 
+ NOECHO
+ 
+-
+ ARITHMETIC
+ --PERMX = 6.58850E-03*EXP(poro*100*5.88593E-01)
+ --PERMX = 0.667774086 * PERMX 
+ PERMX = 1E03*PERMX *  0.667774086
++PCW=0.43822*28*0.318316*((poro/permx)^0.5)
+ PERMX = ARRKX * PERMX
++PERMX = ARRKX2 * PERMX
++ARRMARK = 0 
++ARRMARK(49:54,70:75,18:24)= 1*(NTG==0) + 0*(NTG!=0) 
++NTG = NTG + ARRMARK
++PORO = 0.1*(ARRMARK==1) + PORO*(ARRMARK!=1) 
++PERMX = 2.00*(ARRMARK==1) + PERMX*(ARRMARK!=1) 
+ PERMZ = 0.8 * PERMX
+ MULTPV = (ARRMPV == 1) * 10000*0.5 + (ARRMPV!=1) * 1
++PCW = ARRMPCW * PCW 
++KRW = 1 
++KRWR = (ARRNUM==1) * 0.0742 + (ARRNUM==2) * 0.071
++PERMZ(70:73,5:9,46:50) = 0 * (PERMX<1.500) + PERMZ * (PERMX>=1.500)
++PERMZ(53:59,52:58,37:43) = 0.000 * (PERMX<50.0) + PERMZ * (PERMX>=50.0)
++PERMZ(51:53,61:63,32:35) = 0.000 * (PERMX<6.0) + PERMZ * (PERMX>=6.0)
  /
---- C:/Users/SazonovEO/AppData/Local/Temp/Rpn7ub_MULTS.inc	Thu Jan 23 16:31:45 2014
-+++ D:/BN_work/01_2014/Iskan/model/MULTS.inc	Thu Jan 23 15:54:46 2014
-@@ -30,7 +30,7 @@
- ARRMPCW=ARRMPCW + 1*block(9086.235, 3185.449)
- ARRMPCW=ARRMPCW + 0.1*block(9525.744, 3421.854)
- ARRMPCW=ARRMPCW + 1*block(6197.073, 3815.49175)
--ARRMPCW=ARRMPCW + 0.2*block(9825.781, 3006.10025)
-+ARRMPCW=ARRMPCW + 0.001*block(9825.781, 3006.10025)
- ARRMPCW=ARRMPCW + 0.2*block(9098.92075, 3565.71625)
- ARRMPCW=ARRMPCW + 1*block(6949.305, 4016.40875)
- ARRMPCW=ARRMPCW + 1*block(8698.85875, 3531.59225)
-@@ -71,6 +71,7 @@
- ARRKX=ARRKX + 1*block(9098.92075, 3565.71625)	
- ARRKX=ARRKX + 1*block(6949.305, 4016.40875)	
- ARRKX=ARRKX + 2*block(8698.85875, 3531.59225)	
-+--ARRKX=ARRKX + 3*block(8897,3604)	
- ARRKX = INTERPOLATE_ML_IDW (ARRKX, 0, 1,2)
- ARRKX2	=0
- ARRKX2=ARRKX2 + 1*block(9015.82225, 4211.3235)	
-@@ -84,7 +85,7 @@
- ARRKX2=ARRKX2 + 1*block(6661.917, 3047.0415)	
- ARRKX2=ARRKX2 + 1*block(8403.026, 2897.1765)	
- ARRKX2=ARRKX2 + 1*block(6315.41325, 4422.3355)	
--ARRKX2=ARRKX2 + 1*block(6591.50475, 4072.916)	
-+ARRKX2=ARRKX2 + 5*block(6591.50475, 4072.916)	
- ARRKX2=ARRKX2 + 1*block(7485.987, 3048.95425)	
- ARRKX2=ARRKX2 + 1*block(8370.67075, 5063.852)	
- ARRKX2=ARRKX2 + 1*block(7412.79525, 5951.8675)	
-@@ -112,7 +113,7 @@
- ARRKX2=ARRKX2 + 5*block(7375, 4811)	
- ARRKX2 = INTERPOLATE_ML_IDW (ARRKX2, 0, 1,2)
- ARRTEMP = 0
--ARRTEMP(,,15:21) = 1 
-+ARRTEMP(,,14:21) = 1 
- ARRKX2 = ARRKX2 * ARRTEMP
- ARRKX2 = max(ARRKX2,1)
+ 
+ COPY
+@@ -249,22 +264,16 @@
+ INCLUDE
+ 'GEOL_ups/ARRNUM.inc' /
+ 
+-INCLUDE
+-'GEOL_ups/ARRMPCW.inc' /
++--INCLUDE
++--'GEOL_ups/ARRMPCW.inc' /
++
+ 
+-INCLUDE
+-'GEOL_ups/arrpermx.ecl' /
+ 
+ ARITHMETIC
+-ARRPERMX = 1E03*ARRPERMX *  0.667774086
+ SOWCR = 0.33
+ SWL = 7.07767E+03*PORO^4 - 5.04617E+03*PORO^3 + 1.36104E+03*PORO^2 - 1.64983E+02*PORO + 7.64190E+00
+ SWL = SWL * (PORO<0.1927) + 0.040537 * (PORO>=0.1927)
+ SWL = MIN (0.4, SWL)
+-PCW=0.43822*28*0.318316*((poro/arrpermx)^0.5)
+-PCW = ARRMPCW * PCW 
+-KRW = 1 
+-KRWR = (ARRNUM==1) * 0.0742 + (ARRNUM==2) * 0.071
   /
+ 
+ COPY
