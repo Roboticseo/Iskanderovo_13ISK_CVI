@@ -11,7 +11,8 @@ ETAB
 --********************--
 20	01.06.1974	PROD	HLIQ  HWEF    BHPT 10 
 --********************--
-21	01.09.1973	PROD	HLIQ  HWEF    BHPT 10 
+21	01.09.1973	PROD	HOIL  HWEF    BHPT 10 
+-- while it is being adapted (contour)
 --********************--
 4	01.08.1974	PROD	HLIQ  HWEF    BHPT 10 
 4	01.01.1978	INJE	HWAT  HWEF    BHPT 400 
