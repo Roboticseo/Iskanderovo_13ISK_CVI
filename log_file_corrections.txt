@@ -1,27 +1,11 @@
---- C:/Users/rfd/AppData/Local/Temp/XZWlqa_event_isk.inc	Sun Jan 26 21:46:15 2014
-+++ C:/WORK/2014_01/Isk/INCL/event_isk.inc	Sun Jan 26 19:00:12 2014
-@@ -11,7 +11,8 @@
- --********************--
- 20	01.06.1974	PROD	HLIQ  HWEF    BHPT 10 
- --********************--
--21	01.09.1973	PROD	HLIQ  HWEF    BHPT 10 
-+21	01.09.1973	PROD	HOIL  HWEF    BHPT 10 
-+-- while it is being adapted (contour)
- --********************--
- 4	01.08.1974	PROD	HLIQ  HWEF    BHPT 10 
- 4	01.01.1978	INJE	HWAT  HWEF    BHPT 400 
---- C:/Users/rfd/AppData/Local/Temp/wJURla_Iskups.data	Sun Jan 26 21:46:40 2014
-+++ C:/WORK/2014_01/Isk/Iskups.data	Sun Jan 26 21:44:30 2014
-@@ -95,9 +95,9 @@
- PCW = ARRMPCW * PCW 
- KRW = 1 
- KRWR = (ARRNUM==1) * 0.0742 + (ARRNUM==2) * 0.071
--PERMZ(70:73,5:9,46:50) = 0 * (PERMX<1.500) + PERMZ * (PERMX>=1.500)
--PERMZ(53:59,52:58,37:43) = 0.000 * (PERMX<50.0) + PERMZ * (PERMX>=50.0)
--PERMZ(51:53,61:63,32:35) = 0.000 * (PERMX<6.0) + PERMZ * (PERMX>=6.0)
-+--PERMZ(70:73,5:9,46:50) = 0 * (PERMX<1.500) + PERMZ * (PERMX>=1.500)
-+PERMZ(53:59,52:58,28:35) = 0.000 * (PERMX<100.0) + PERMZ * (PERMX>=100.0)
-+PERMZ(51:53,61:63,25:28) = 0.000 * (PERMX<7.0) + PERMZ * (PERMX>=7.0)
- /
- 
- COPY
+--- C:/Users/SazonovEO/AppData/Local/Temp/qB7hgc_MULTS.inc	Mon Jan 27 11:56:54 2014
++++ D:/BN_work/01_2014/Iskan/model/MULTS.inc	Mon Jan 27 10:35:06 2014
+@@ -67,7 +67,7 @@
+ ARRKX=ARRKX + 1*block(9086.235, 3185.449)	
+ ARRKX=ARRKX + 1*block(9525.744, 3421.854)	
+ ARRKX=ARRKX + 0.165687343865452*block(6197.073, 3815.49175)	
+-ARRKX=ARRKX + 1*block(9825.781, 3006.10025)	
++ARRKX=ARRKX + 30*block(9825.781, 3006.10025)	
+ ARRKX=ARRKX + 1*block(9098.92075, 3565.71625)	
+ ARRKX=ARRKX + 1*block(6949.305, 4016.40875)	
+ ARRKX=ARRKX + 2*block(8698.85875, 3531.59225)	
