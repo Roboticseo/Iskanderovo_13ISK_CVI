@@ -209,3 +209,19 @@ ARRKX2=ARRKX2 + 4*block(6552, 3871)
 ******************************************************
 
 
+======================================================
+20140129_1 Geology 20140128. Iskups.data.
+Some modifications on 13, 13-31, 21 - contour
+Details on log
+
+13 well:
+ARRKX2=ARRKX2 + 20*block(6557.688, 3647.3335)	
+
+13-31 well:
+ARRKX2=ARRKX2 + 8*block(6552, 3871)	
+
+21-contour:
+ARRKX=ARRKX + 6*block(9034, 2603)	
+ARRKX=ARRKX + 6*block(8859, 2464)	
+******************************************************
+

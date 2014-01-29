@@ -1,41 +1,40 @@
---- C:/Users/rfd/AppData/Local/Temp/hZjF0c_perf_isk.inc	Tue Jan 28 20:20:49 2014
-+++ C:/WORK/2014_01/Isk/INCL/perf_isk.inc	Tue Jan 28 19:36:24 2014
-@@ -12,11 +12,12 @@
- 11	01.05.1978	PERF	1824.00	1848.00	0.066	0	1	/	0	кумулятивный перевод на другой горизонт
- 13	01.12.1968	PERF	2080.00	2085.50	0.066	0	2	/	DI; 	кумулятивный вторичное вскрытие после бурения + хорошее освоение
- 13	01.12.1978	PERF	2080.00	2085.50	0.066	0	1	/	DI; 	кумулятивный вторичное вскрытие после бурения
-+13	01.02.1979	PERF	2076.00	2077.20	0.066	0	3	/	DI; 	предположение на 31 скаважину
- 14	01.01.1973	PERF	2122.80	2125.60	0.066	0	1	/	DI; 	кумулятивный вторичное вскрытие после бурения
- 14	01.11.1976	PERF	2118.80	2122.80	0.066	0	1	/	DI; 	кумулятивный дострел
- 20	01.03.1974	PERF	2310.20	2314.00	0.066	0	1	/	DI; 	кумулятивный вторичное вскрытие после бурения
- 20	01.08.1977	PERF	2310.20	2314.00	0.066	0	1	CLOSE /	DI; 	Цем.залив.в перф.инт.с ост ЦМ откл.перф.инт.
--20	01.09.1977	PERF	2302.00	2304.60	0.066	0	1	/	DI; 	кумулятивный дострел
-+20	01.09.1977	PERF	2302.00	2304.60	0.066	0	2	/	DI; 	кумулятивный дострел
- 21	01.08.1973	PERF	2188.00	2191.20	0.066	0	1	/	DI; 	кумулятивный вторичное вскрытие после бурения
- 23A	01.03.1973	PERF	2090.40	2094.00	0.066	0	1	/	DI; 	кумулятивный вторичное вскрытие после бурения
- 23A	01.11.1976	PERF	2084.00	2090.40	0.066	0	1	/	DI; 	кумулятивный дострел
---- C:/Users/rfd/AppData/Local/Temp/19sKMa_MULTS.inc	Tue Jan 28 20:21:03 2014
-+++ C:/WORK/2014_01/Isk/MULTS.inc	Tue Jan 28 20:11:38 2014
-@@ -71,12 +71,13 @@
+--- C:/Users/SazonovEO/AppData/Local/Temp/3IHB6c_event_isk.inc	Wed Jan 29 12:31:35 2014
++++ D:/BN_work/01_2014/Iskan/model/INCL/event_isk.inc	Wed Jan 29 12:16:09 2014
+@@ -17,7 +17,8 @@
+ 4	01.08.1974	PROD	HLIQ  HWEF    BHPT 10 
+ 4	01.01.1978	INJE	HWAT  HWEF    BHPT 400 
+ --********************--
+-6	01.09.1973	PROD	HLIQ  HWEF    BHPT 10 
++6	01.09.1973	PROD	HLIQ  HWEF    BHPT 10  
++-- предположительно НЕГЕРМ (ЗКЦ)
+ --********************--
+ 23A	01.03.1973	PROD	HLIQ  HWEF    BHPT 10 
+ --********************--
+--- C:/Users/SazonovEO/AppData/Local/Temp/KvTzme_MULTS.inc	Wed Jan 29 12:31:58 2014
++++ D:/BN_work/01_2014/Iskan/model/MULTS.inc	Wed Jan 29 11:20:05 2014
+@@ -71,13 +71,14 @@
  ARRKX=ARRKX + 1*block(9098.92075, 3565.71625)	
  ARRKX=ARRKX + 1*block(6949.305, 4016.40875)	
  ARRKX=ARRKX + 2*block(8698.85875, 3531.59225)	
-+ARRKX=ARRKX + 3*block(9034, 2603)	
+-ARRKX=ARRKX + 3*block(9034, 2603)	
++ARRKX=ARRKX + 6*block(9034, 2603)	
++ARRKX=ARRKX + 6*block(8859, 2464)	
  --ARRKX=ARRKX + 3*block(8897,3604)	
  ARRKX = INTERPOLATE_ML_IDW (ARRKX, 0, 1,2)
  ARRKX2	=0
  ARRKX2=ARRKX2 + 1*block(9015.82225, 4211.3235)	
  ARRKX2=ARRKX2 + 1*block(9351.066, 3282.632)	
--ARRKX2=ARRKX2 + 1*block(6557.688, 3647.3335)	
-+ARRKX2=ARRKX2 + 10*block(6557.688, 3647.3335)	
+-ARRKX2=ARRKX2 + 10*block(6557.688, 3647.3335)	
++ARRKX2=ARRKX2 + 20*block(6557.688, 3647.3335)	
  ARRKX2=ARRKX2 + 1*block(7140.873, 3485.72825)	
  ARRKX2=ARRKX2 + 1*block(8707.304, 3196.64125)	
  ARRKX2=ARRKX2 + 1*block(8893.242, 2889.26125)	
-@@ -111,6 +112,7 @@
+@@ -112,7 +113,7 @@
  ARRKX2=ARRKX2 + 5*block(6742, 4278)	
  ARRKX2=ARRKX2 + 5*block(7023, 4644)	
  ARRKX2=ARRKX2 + 5*block(7375, 4811)	
-+ARRKX2=ARRKX2 + 4*block(6552, 3871)	
+-ARRKX2=ARRKX2 + 4*block(6552, 3871)	
++ARRKX2=ARRKX2 + 8*block(6552, 3871)	
  ARRKX2 = INTERPOLATE_ML_IDW (ARRKX2, 0, 1,2)
  ARRTEMP = 0
  ARRTEMP(,,14:21) = 1 

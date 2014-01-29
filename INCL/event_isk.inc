@@ -17,7 +17,8 @@ ETAB
 4	01.08.1974	PROD	HLIQ  HWEF    BHPT 10 
 4	01.01.1978	INJE	HWAT  HWEF    BHPT 400 
 --********************--
-6	01.09.1973	PROD	HLIQ  HWEF    BHPT 10 
+6	01.09.1973	PROD	HLIQ  HWEF    BHPT 10  
+-- ןנוהןמכמזטעוכüםמ ÍÅÃÅÐÌ (ÇÊÖ)
 --********************--
 23A	01.03.1973	PROD	HLIQ  HWEF    BHPT 10 
 --********************--
